@@ -1,4 +1,9 @@
+import os
+from dotenv import load_dotenv
 from pydantic_settings import BaseSettings
+
+# override=True: значення з .env завжди перебивають системні env vars
+load_dotenv(override=True)
 
 
 class Settings(BaseSettings):
@@ -10,7 +15,6 @@ class Settings(BaseSettings):
     class Config:
         env_file = ".env"
         env_file_encoding = "utf-8"
-        env_ignore_empty = True  # ігнорує порожні системні env vars, бере з .env
 
 
 settings = Settings()
