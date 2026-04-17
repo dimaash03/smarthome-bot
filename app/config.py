@@ -1,9 +1,13 @@
-import os
-from dotenv import load_dotenv
+from pathlib import Path
+from dotenv import dotenv_values
 from pydantic_settings import BaseSettings
 
-# override=True: значення з .env завжди перебивають системні env vars
-load_dotenv(override=True)
+# Шлях до .env відносно цього файлу (app/config.py → корінь проекту)
+_BASE_DIR = Path(__file__).parent.parent
+_env_file = _BASE_DIR / ".env"
+
+# Читаємо .env напряму з файлу — системні env vars повністю ігноруються
+_env_values = dotenv_values(_env_file)
 
 
 class Settings(BaseSettings):
@@ -13,8 +17,8 @@ class Settings(BaseSettings):
     GOOGLE_SERVICE_ACCOUNT_FILE: str = "service_account.json"
 
     class Config:
-        env_file = ".env"
         env_file_encoding = "utf-8"
 
 
-settings = Settings()
+# init-значення мають найвищий пріоритет у pydantic-settings
+settings = Settings(**_env_values)
