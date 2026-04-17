@@ -1,5 +1,8 @@
-.env
 service_account.json
+bot.log
+bot.pid
+*.pid
+.DS_Store
 __pycache__/
 *.pyc
 *.pyo
