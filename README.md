@@ -119,7 +119,7 @@ messages = [{"role": "user", "content": user_message}]
 
 while iterations < MAX_ITERATIONS:
     response = claude.messages.create(
-        model="claude-3-5-sonnet-20241022",
+        model="claude-sonnet-4-6",
         tools=TOOLS,          # get_client_info, get_order_status
         messages=messages,
     )
@@ -182,7 +182,7 @@ while iterations < MAX_ITERATIONS:
 
 - **Python 3.11+**
 - **aiogram 3.x** — Telegram Bot Framework
-- **anthropic** — офіційний SDK для Claude API
+- **anthropic** — офіційний SDK для Claude API (`claude-sonnet-4-6`)
 - **gspread + google-auth** — Google Sheets інтеграція
 - **pydantic-settings** — конфігурація через .env
 
